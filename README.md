@@ -2,7 +2,7 @@
 <b> How to use manual :</b><br>
 
 <br>
-File : App.config - few parameters we have to set before using this lib :<br>
+File Settings : App.config - few parameters we have to set before using this lib : refer App.config in repo files :<br>
 <appSettings>
 	<add key="Name" value="Org.Apollo.Logging"/>
 	<add key="FilePath" value="C:\Logs\TestProject01\"/>
