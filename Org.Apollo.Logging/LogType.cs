@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Org.Apollo.Logging
 {
-    public class Class1
+    public enum LogType
     {
-
+        Info,
+        Warning,
+        Exception
     }
 }
