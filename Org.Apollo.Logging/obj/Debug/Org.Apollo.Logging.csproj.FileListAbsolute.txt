@@ -1,0 +1,5 @@
+C:\E\VS-Programs\Org.Apollo\Org.Apollo.Logging\Org.Apollo.Logging\bin\Debug\Org.Apollo.Logging.dll
+C:\E\VS-Programs\Org.Apollo\Org.Apollo.Logging\Org.Apollo.Logging\bin\Debug\Org.Apollo.Logging.pdb
+C:\E\VS-Programs\Org.Apollo\Org.Apollo.Logging\Org.Apollo.Logging\obj\Debug\Org.Apollo.Logging.csprojResolveAssemblyReference.cache
+C:\E\VS-Programs\Org.Apollo\Org.Apollo.Logging\Org.Apollo.Logging\obj\Debug\Org.Apollo.Logging.dll
+C:\E\VS-Programs\Org.Apollo\Org.Apollo.Logging\Org.Apollo.Logging\obj\Debug\Org.Apollo.Logging.pdb
