@@ -45,9 +45,8 @@ namespace LogDemo
 }
 
 
-<br><br>
-File : App.config - few parameters we have to set before using this lib :
 <br>
+File : App.config - few parameters we have to set before using this lib :<br>
 <appSettings>
 	<add key="Name" value="Org.Apollo.Logging"/>
 	<add key="FilePath" value="C:\Logs\TestProject01\"/>
@@ -57,4 +56,3 @@ File : App.config - few parameters we have to set before using this lib :
 	<add key="Env" value="TUP"/>
 	<add key="IsLogOn" value="True"/>
 </appSettings>
-<br>
