@@ -8,10 +8,10 @@ namespace Org.Apollo.Logging
 {
     public interface ILog
     {
-        Guid Info();
+        Guid Info(ErrorDetails e);
 
-        Guid Warning();
+        Guid Warning(ErrorDetails e);
 
-        Guid Error();
+        Guid Error(ErrorDetails e);
     }
 }

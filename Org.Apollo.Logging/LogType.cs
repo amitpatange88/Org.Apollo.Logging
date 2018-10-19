@@ -12,4 +12,13 @@ namespace Org.Apollo.Logging
         Warning,
         Exception
     }
+
+    public static class Constants
+    {
+        public static string Info = "Informational";
+
+        public static string Warning = "Warning";
+
+        public static string Exception = "Exception";
+    }
 }
