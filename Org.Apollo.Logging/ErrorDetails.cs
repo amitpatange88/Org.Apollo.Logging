@@ -15,21 +15,21 @@ namespace Org.Apollo.Logging
         /// This field you can not set.Once you passed ErrorDetails object to library you will recieve a Log Unique Id to search in 
         /// database.
         /// </summary>
-        internal Guid LogUniqueId { get; set; }
+        public Guid LogUniqueId { get; set; }
 
-        internal DateTime PreciseTimeStamp { get; set; }
+        public DateTime PreciseTimeStamp { get; set; }
 
-        internal DateTime UTCTimeStamp { get; set; }
+        public DateTime UTCTimeStamp { get; set; }
 
         /// <summary>
         /// Set the log type from code.
         /// </summary>
-        internal LogType Type { get; set; }
+        public LogType Type { get; set; }
 
         /// <summary>
         /// Set the log type in string.
         /// </summary>
-        internal string TypeName { get; set; }
+        public string TypeName { get; set; }
 
         /// <summary>
         /// Defined by User :

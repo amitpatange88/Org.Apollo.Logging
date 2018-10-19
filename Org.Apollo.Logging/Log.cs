@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,8 +35,9 @@ namespace Org.Apollo.Logging
             e.Type = LogType.Info;
             e.TypeName = Constants.Info;
             string infoLog = JsonConvert.SerializeObject(e);
-            FileUtility.Instance.WriteLog(infoLog);
             
+            FileUtility.Instance.WriteLog(infoLog);
+
             return e.LogUniqueId;
         }
 
