@@ -47,6 +47,7 @@
     <Compile Include="ErrorDetails.cs" />
     <Compile Include="FileUtility.cs" />
     <Compile Include="ILog.cs" />
+    <Compile Include="LoadConfiguration.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="LogType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

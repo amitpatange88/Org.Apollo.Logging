@@ -62,27 +62,40 @@ namespace Org.Apollo.Logging
             bool IsDone = false;
             try
             {
-                if (!File.Exists(MakeFileName()))
+                CreateFileIfNotExists();
+
+                using (StreamWriter w = File.AppendText(_FileLocation))
                 {
-                    File.Create(_FileLocation);
-                    TextWriter tw = new StreamWriter(_FileLocation);
-                    tw.WriteLine(content);
-                    tw.Close();
-                }
-                else
-                {
-                    using (StreamWriter w = File.AppendText(_FileLocation))
-                    {
-                        w.WriteLine(content);
-                        IsDone = true;
-                    }
+                    w.WriteLine(content);
+                    IsDone = true;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
             return IsDone;
+        }
+
+        private void CreateFileIfNotExists()
+        {
+            bool IsExist = File.Exists(MakeFileName());
+            if (!IsExist)
+            {
+                var file = File.Create(_FileLocation);
+                file.Close();
+            }
+        }
+
+        /// <summary>
+        /// Return file size in bytes.
+        /// InMb = bytes / 1000000
+        /// </summary>
+        /// <param name="_FileLocation"></param>
+        /// <returns></returns>
+        private long GetFileSize(string _FileLocation)
+        {
+            return new System.IO.FileInfo(_FileLocation).Length;
         }
 
         public void WriteLog_Copy(string content)

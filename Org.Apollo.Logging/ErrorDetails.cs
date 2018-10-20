@@ -9,27 +9,29 @@ namespace Org.Apollo.Logging
 {
     public class ErrorDetails
     {
-        public object _log;
-
         /// <summary>
         /// This field you can not set.Once you passed ErrorDetails object to library you will recieve a Log Unique Id to search in 
         /// database.
         /// </summary>
-        public Guid LogUniqueId { get; set; }
+        internal Guid LogUniqueId { get; set; }
 
-        public DateTime PreciseTimeStamp { get; set; }
+        internal DateTime PreciseTimeStamp { get; set; }
 
-        public DateTime UTCTimeStamp { get; set; }
+        internal DateTime UTCTimeStamp { get; set; }
 
         /// <summary>
         /// Set the log type from code.
         /// </summary>
-        public LogType Type { get; set; }
+        internal LogType Type { get; set; }
 
         /// <summary>
         /// Set the log type in string.
         /// </summary>
-        public string TypeName { get; set; }
+        internal string TypeName { get; set; }
+
+        internal string ExecutionMode  { get; set; }
+
+        internal string Environment { get; set; }
 
         /// <summary>
         /// Defined by User :

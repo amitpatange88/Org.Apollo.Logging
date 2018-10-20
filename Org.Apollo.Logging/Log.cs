@@ -13,6 +13,7 @@ namespace Org.Apollo.Logging
     {
         //Assigning objects here only immplies lazy loading in Singleton design pattern.
         private static readonly Lazy<Log> instance = new Lazy<Log>(() => new Log());
+        private bool IsLoggingOn = LoadConfiguration.Instance.IsLogOn;
 
         public static Log Instance
         {
@@ -29,13 +30,10 @@ namespace Org.Apollo.Logging
 
         public Guid Info(ErrorDetails e = null)
         {
-            e.LogUniqueId = Guid.NewGuid();
-            e.PreciseTimeStamp = DateTime.Now;
-            e.UTCTimeStamp = DateTime.UtcNow;
-            e.Type = LogType.Info;
-            e.TypeName = Constants.Info;
-            string infoLog = JsonConvert.SerializeObject(e);
-            
+            if (!IsLoggingOn) return Guid.Empty;
+
+            LoadCommonErrorDetailsFields(e, "Info");
+            string infoLog = SerializeJSONData(e);
             FileUtility.Instance.WriteLog(infoLog);
 
             return e.LogUniqueId;
@@ -43,12 +41,10 @@ namespace Org.Apollo.Logging
 
         public Guid Warning(ErrorDetails e = null)
         {
-            e.LogUniqueId = Guid.NewGuid();
-            e.PreciseTimeStamp = DateTime.Now;
-            e.UTCTimeStamp = DateTime.UtcNow;
-            e.Type = LogType.Warning;
-            e.TypeName = Constants.Warning;
-            string warningLog = JsonConvert.SerializeObject(e);
+            if (!IsLoggingOn) return Guid.Empty;
+
+            LoadCommonErrorDetailsFields(e, "Warning");
+            string warningLog = SerializeJSONData(e);
             FileUtility.Instance.WriteLog(warningLog);
 
             return e.LogUniqueId;
@@ -56,15 +52,58 @@ namespace Org.Apollo.Logging
 
         public Guid Error(ErrorDetails e)
         {
-            e.LogUniqueId = Guid.NewGuid();
-            e.PreciseTimeStamp = DateTime.Now;
-            e.UTCTimeStamp = DateTime.UtcNow;
-            e.Type = LogType.Exception;
-            e.TypeName = Constants.Exception;
-            string exceptionLog = JsonConvert.SerializeObject(e);
+            if (!IsLoggingOn) return Guid.Empty;
+
+            LoadCommonErrorDetailsFields(e, "Error");
+            string exceptionLog = SerializeJSONData(e);
             FileUtility.Instance.WriteLog(exceptionLog);
 
             return e.LogUniqueId;
+        }
+
+        private string SerializeJSONData(ErrorDetails e)
+        {
+            //This (below line) won't be covering a non public fields. so code is below to cover this scenario.
+            //var response = JsonConvert.SerializeObject(e);
+
+            Newtonsoft.Json.JsonSerializerSettings jss = new Newtonsoft.Json.JsonSerializerSettings();
+
+            Newtonsoft.Json.Serialization.DefaultContractResolver dcr = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+            dcr.DefaultMembersSearchFlags |= System.Reflection.BindingFlags.NonPublic;
+            jss.ContractResolver = dcr;
+
+            var response = Newtonsoft.Json.JsonConvert.SerializeObject(e, jss);
+
+            return response;
+        }
+
+        private static ErrorDetails LoadCommonErrorDetailsFields(ErrorDetails e, string type)
+        {
+            if (type == "Info")
+            {
+                e.Type = LogType.Info;
+                e.TypeName = Constants.Info;
+                e.ErrorCode = 0;
+            }
+            else if(type == "Warning")
+            {
+                e.Type = LogType.Warning;
+                e.TypeName = Constants.Warning;
+                e.ErrorCode = 1;
+            }
+            else if (type == "Error")
+            {
+                e.Type = LogType.Exception;
+                e.TypeName = Constants.Exception;
+            }
+
+            e.LogUniqueId = Guid.NewGuid();
+            e.PreciseTimeStamp = DateTime.Now;
+            e.UTCTimeStamp = DateTime.UtcNow;
+            e.Environment = LoadConfiguration.Instance.Environment;
+            e.ExecutionMode = LoadConfiguration.Instance.ExecutionMode;
+
+            return e;
         }
     }
 }
