@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Org.Apollo.Logging</id>
-    <version>1.0.0.2</version>
+    <version>1.0.0.3</version>
     <authors>Amit Patange</authors>
     <owners>Amit Patange</owners>
     <licenseUrl>https://github.com/amitpatange88/Org.Apollo.Logging</licenseUrl>
@@ -10,8 +10,8 @@
     <iconUrl>https://raw.githubusercontent.com/amitpatange88/icons/master/Org.Apollo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Org.Apollo.Logging lib is for error logging in .net application. It creates txt document file contains json formatted strings.</description>
-    <releaseNotes>Encapsulating ErrorDetails fields for end user and serialization changes applied in this release.</releaseNotes>
-    <copyright>Copyright 2018</copyright>
+    <releaseNotes>Error details json property names modified.</releaseNotes>
+    <copyright>Copyright 2018</copyright> 
     <tags>Org.Apollo.Logging</tags>
     <dependencies></dependencies>
   </metadata>

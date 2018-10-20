@@ -28,6 +28,11 @@ namespace Org.Apollo.Logging
             
         }
 
+        /// <summary>
+        /// Store informational error messages. Category.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public Guid Info(ErrorDetails e = null)
         {
             if (!IsLoggingOn) return Guid.Empty;
@@ -39,6 +44,11 @@ namespace Org.Apollo.Logging
             return e.LogUniqueId;
         }
 
+        /// <summary>
+        /// Category - Warning : This is warning related messages.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public Guid Warning(ErrorDetails e = null)
         {
             if (!IsLoggingOn) return Guid.Empty;
@@ -50,6 +60,11 @@ namespace Org.Apollo.Logging
             return e.LogUniqueId;
         }
 
+        /// <summary>
+        /// Category Error : This is Exception message category.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public Guid Error(ErrorDetails e)
         {
             if (!IsLoggingOn) return Guid.Empty;
@@ -61,6 +76,11 @@ namespace Org.Apollo.Logging
             return e.LogUniqueId;
         }
 
+        /// <summary>
+        /// Serialize the JSON data. Using with Default contract resolver for non public fields.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private string SerializeJSONData(ErrorDetails e)
         {
             //This (below line) won't be covering a non public fields. so code is below to cover this scenario.
@@ -77,6 +97,12 @@ namespace Org.Apollo.Logging
             return response;
         }
 
+        /// <summary>
+        /// Load common fields of ErrorDetails from common methods.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         private static ErrorDetails LoadCommonErrorDetailsFields(ErrorDetails e, string type)
         {
             if (type == "Info")

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Org.Apollo.Logging
 {
+    /// <summary>
+    /// File Operations are handled here.
+    /// </summary>
     public class FileUtility : ConfigurationElement
     {
         private string _Path = string.Empty;
